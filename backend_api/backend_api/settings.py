@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-bq4@&+u81m0@i82!p(5by_ik(9i8x1j72l#)oy2ipz^8yq230n'
+SECRET_KEY = 'django-insecure-sci+xyh87#17@3dblx10l9p1oqclb_eut39pe(i(=m6le!%+9='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,9 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'readings',
     'corsheaders',
-    'rest_framework',
+    'readings',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +44,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,17 +76,22 @@ WSGI_APPLICATION = 'backend_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+from decouple import config
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # Cambia esto por el motor de base de datos que estés utilizando
-        'NAME': 'readers',  # El nombre de tu base de datos
-        'USER': 'admin',  # El nombre de usuario de tu base de datos
-        'PASSWORD': 'luis',  # La contraseña de tu base de datos
-        'HOST': 'localhost',  # El host de tu base de datos
-        'PORT': '5432',  # El puerto de tu base de datos
+        'ENGINE': 'django.db.backends.postgresql',  # Elige tu motor de base de datos
+        'NAME': 'readers',  # Reemplaza con el nombre real de tu base de datos
+        'USER': 'postgres',  # Reemplaza con el usuario de tu base de datos
+        'PASSWORD': 'luis',  # Reemplaza con la contraseña de tu base de datos
+        'HOST': 'localhost',  # Deja en blanco para el host local
+        'PORT': '5432',  # Puerto predeterminado para PostgreSQL
     }
 }
 
+
+from decouple import Config, Csv
+config = Config('.env')
 
 
 # Password validation
